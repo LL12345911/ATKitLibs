@@ -20,14 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _lock = [[NSLock alloc] init];
-    ATLockEXE00(_lock, ^{
-        
-    });
-    
-    ATLockEXE10(_lock, ^ATBlock{
-        return [self infoCallback];
-    });
+//    _lock = [[NSLock alloc] init];
+//    ATLockEXE00(_lock, ^{
+//
+//    });
+//
+//    ATLockEXE10(_lock, ^ATBlock{
+//        return [self infoCallback];
+//    });
     
     //判断 App是否开启定位权限
     [[AuthorizationManager defaultManager] requestAuthorizationWithAuthorizationType:AuthorizationTypeMapWhenInUseOrMapAlways authorizedHandler:^{
@@ -53,16 +53,16 @@
     }];
 }
 
-- (ATBlock)infoCallback{
-    return ^{
-        [self callback:^{
-            NSLog(@"");
-            NSLog(@"");
-            NSLog(@"");
-            NSLog(@"");
-        }];
-    };
-}
+//- (ATBlock)infoCallback{
+//    return ^{
+//        [self callback:^{
+//            NSLog(@"");
+//            NSLog(@"");
+//            NSLog(@"");
+//            NSLog(@"");
+//        }];
+//    };
+//}
 
 - (void)callback:(void (^)(void))block{
     if (!block) {

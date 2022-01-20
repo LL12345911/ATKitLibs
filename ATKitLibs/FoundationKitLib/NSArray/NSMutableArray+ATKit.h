@@ -9,17 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface NSMutableArray (ATKit)
-/**
- * Returns an string concatedated with delimiter
- */
-- (NSString *_Nullable)implode:(NSString *_Nullable)delimiter;
-
-/// 数组转化为字符串
-- (NSString *_Nullable)toString;
-
-/// 数组转化为JSON字符串
-- (NSString *_Nullable)toJson;
 
 
 - (id)objectAtIndexCheck:(NSUInteger)index;
@@ -77,6 +70,17 @@
 @interface NSArray (ATSafe)
 
 /**
+ * Returns an string concatedated with delimiter
+ */
+- (NSString *_Nullable)implode:(NSString *_Nullable)delimiter;
+
+/// 数组转化为字符串
+- (NSString *_Nullable)toString;
+
+/// 数组转化为JSON字符串
+- (NSString *_Nullable)toJson;
+
+/**
  * 该数组是否包含这个字符串
  
  @param string 字符串
@@ -124,3 +128,6 @@
 
 
 @end
+
+
+NS_ASSUME_NONNULL_END

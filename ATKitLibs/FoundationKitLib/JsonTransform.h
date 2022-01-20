@@ -130,11 +130,11 @@ CG_INLINE NSString* JSONString(NSDictionary *dict){
     return mutStr;
 }
 /**
- *  @brief  将url参数转换成NSDictionary
+ *  @brief  将NSArray转换成JSON 字符串
  *
- *  @param query url参数
+ *  @param array url参数
  *
- *  @return NSDictionary
+ *  @return NSString
  */
 CG_INLINE NSString* JSONStringWithArray(NSArray *array){
     

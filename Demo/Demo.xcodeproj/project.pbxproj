@@ -335,9 +335,9 @@
 			isa = PBXGroup;
 			children = (
 				41D0ECE52799332D004F2A31 /* Base64.h */,
-				41D0ECE62799332D004F2A31 /* NSString+ATKit.m */,
 				41D0ECE72799332D004F2A31 /* Base64.m */,
 				41D0ECE82799332D004F2A31 /* NSString+ATKit.h */,
+				41D0ECE62799332D004F2A31 /* NSString+ATKit.m */,
 			);
 			path = NSString;
 			sourceTree = "<group>";
@@ -345,8 +345,8 @@
 		41D0ECE92799332D004F2A31 /* NSArray */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ECEA2799332D004F2A31 /* NSMutableArray+ATKit.m */,
 				41D0ECEB2799332D004F2A31 /* NSMutableArray+ATKit.h */,
+				41D0ECEA2799332D004F2A31 /* NSMutableArray+ATKit.m */,
 			);
 			path = NSArray;
 			sourceTree = "<group>";
@@ -363,10 +363,10 @@
 		41D0ECEF2799332D004F2A31 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ECF02799332D004F2A31 /* NSObject+Json.m */,
+				41D0ECF32799332D004F2A31 /* NSObject+ATAlert.h */,
 				41D0ECF12799332D004F2A31 /* NSObject+ATAlert.m */,
 				41D0ECF22799332D004F2A31 /* NSObject+Json.h */,
-				41D0ECF32799332D004F2A31 /* NSObject+ATAlert.h */,
+				41D0ECF02799332D004F2A31 /* NSObject+Json.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -374,8 +374,8 @@
 		41D0ECF52799332D004F2A31 /* NSDate */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ECF62799332D004F2A31 /* NSDate+Util.m */,
 				41D0ECF72799332D004F2A31 /* NSDate+Util.h */,
+				41D0ECF62799332D004F2A31 /* NSDate+Util.m */,
 			);
 			path = NSDate;
 			sourceTree = "<group>";
@@ -406,10 +406,10 @@
 		41D0ECFB2799332D004F2A31 /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
+				41D0ECFF2799332D004F2A31 /* UIImage+ATKit.h */,
 				41D0ECFC2799332D004F2A31 /* UIImage+ATKit.m */,
 				41D0ECFD2799332D004F2A31 /* UIImage+QRCode.h */,
 				41D0ECFE2799332D004F2A31 /* UIImage+QRCode.m */,
-				41D0ECFF2799332D004F2A31 /* UIImage+ATKit.h */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -435,10 +435,10 @@
 		41D0ED062799332D004F2A31 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ED072799332D004F2A31 /* AngleView.h */,
-				41D0ED082799332D004F2A31 /* AlignmentLabel.m */,
-				41D0ED092799332D004F2A31 /* AngleView.m */,
 				41D0ED0A2799332D004F2A31 /* AlignmentLabel.h */,
+				41D0ED082799332D004F2A31 /* AlignmentLabel.m */,
+				41D0ED072799332D004F2A31 /* AngleView.h */,
+				41D0ED092799332D004F2A31 /* AngleView.m */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -447,9 +447,9 @@
 			isa = PBXGroup;
 			children = (
 				41D0ED0C2799332D004F2A31 /* UIButton+ATImagePosition.h */,
-				41D0ED0D2799332D004F2A31 /* UIButton+ATIndicator.m */,
 				41D0ED0E2799332D004F2A31 /* UIButton+ATImagePosition.m */,
 				41D0ED0F2799332D004F2A31 /* UIButton+ATIndicator.h */,
+				41D0ED0D2799332D004F2A31 /* UIButton+ATIndicator.m */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -457,8 +457,8 @@
 		41D0ED102799332D004F2A31 /* UIColor */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ED112799332D004F2A31 /* UIColor+HexColor.m */,
 				41D0ED122799332D004F2A31 /* UIColor+HexColor.h */,
+				41D0ED112799332D004F2A31 /* UIColor+HexColor.m */,
 			);
 			path = UIColor;
 			sourceTree = "<group>";
@@ -467,11 +467,11 @@
 			isa = PBXGroup;
 			children = (
 				41D0ED142799332D004F2A31 /* UIView+ATDraggable.h */,
-				41D0ED152799332D004F2A31 /* UIView+Util.m */,
-				41D0ED162799332D004F2A31 /* UIView+Frame.m */,
 				41D0ED172799332D004F2A31 /* UIView+ATDraggable.m */,
-				41D0ED182799332D004F2A31 /* UIView+Util.h */,
 				41D0ED192799332D004F2A31 /* UIView+Frame.h */,
+				41D0ED162799332D004F2A31 /* UIView+Frame.m */,
+				41D0ED182799332D004F2A31 /* UIView+Util.h */,
+				41D0ED152799332D004F2A31 /* UIView+Util.m */,
 			);
 			path = UIView;
 			sourceTree = "<group>";
@@ -518,12 +518,12 @@
 		41D0ED292799332D004F2A31 /* UIViewController */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ED2A2799332D004F2A31 /* UIViewController+Util.h */,
 				41D0ED2B2799332D004F2A31 /* UIViewController+Animation.h */,
-				41D0ED2C2799332D004F2A31 /* UIViewController+ATKit.m */,
-				41D0ED2D2799332D004F2A31 /* UIViewController+Util.m */,
-				41D0ED2E2799332D004F2A31 /* UIViewController+ATKit.h */,
 				41D0ED2F2799332D004F2A31 /* UIViewController+Animation.m */,
+				41D0ED2E2799332D004F2A31 /* UIViewController+ATKit.h */,
+				41D0ED2C2799332D004F2A31 /* UIViewController+ATKit.m */,
+				41D0ED2A2799332D004F2A31 /* UIViewController+Util.h */,
+				41D0ED2D2799332D004F2A31 /* UIViewController+Util.m */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -1052,7 +1052,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9CH9743AMZ;
+				DEVELOPMENT_TEAM = 2RLJST5GN7;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1070,7 +1070,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9CH9743AMZ;
+				DEVELOPMENT_TEAM = 2RLJST5GN7;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
