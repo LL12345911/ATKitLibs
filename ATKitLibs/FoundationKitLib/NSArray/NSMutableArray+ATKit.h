@@ -10,6 +10,17 @@
 #import <UIKit/UIKit.h>
 
 @interface NSMutableArray (ATKit)
+/**
+ * Returns an string concatedated with delimiter
+ */
+- (NSString *_Nullable)implode:(NSString *_Nullable)delimiter;
+
+/// 数组转化为字符串
+- (NSString *_Nullable)toString;
+
+/// 数组转化为JSON字符串
+- (NSString *_Nullable)toJson;
+
 
 - (id)objectAtIndexCheck:(NSUInteger)index;
 /**

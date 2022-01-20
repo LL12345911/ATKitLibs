@@ -83,6 +83,21 @@
 
 @implementation NSArray (ATSafe)
 
+- (NSString *_Nullable)implode:(NSString *_Nullable)delimiter {
+    return [self componentsJoinedByString:delimiter];
+}
+
+- (NSString *_Nullable)toString {
+    NSString *exploded = [self implode:@","];
+    return [NSString stringWithFormat:@"[%@]", exploded];
+}
+
+- (NSString *_Nullable)toJson {
+    NSError *err;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:0 error:&err];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
 /**
  * 该数组是否包含这个字符串
  
