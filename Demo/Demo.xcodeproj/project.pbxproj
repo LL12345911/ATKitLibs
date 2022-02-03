@@ -489,10 +489,10 @@
 		41D0ED1C2799332D004F2A31 /* UINavigation-SXFixSpace */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ED1D2799332D004F2A31 /* UINavigationSXFixSpace.h */,
 				41D0ED1E2799332D004F2A31 /* UIBarButtonItem+SXCreate.h */,
-				41D0ED1F2799332D004F2A31 /* UINavigationSXFixSpace.m */,
 				41D0ED202799332D004F2A31 /* UIBarButtonItem+SXCreate.m */,
+				41D0ED1D2799332D004F2A31 /* UINavigationSXFixSpace.h */,
+				41D0ED1F2799332D004F2A31 /* UINavigationSXFixSpace.m */,
 			);
 			path = "UINavigation-SXFixSpace";
 			sourceTree = "<group>";

@@ -55,12 +55,19 @@ CG_INLINE BOOL isIphoneX(){
     if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) {
         return iPhoneXSeries;
     }
-    if (@available(iOS 11.0, *)) {//x系列的系统从iOS11开始
-        if(UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom > 0.0) {
-            iPhoneXSeries = YES;
-        }
+    /// 在这里之所以使用 windows 是因为，keyWindow、delegate.window有时候会获取不到，为null
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+        iPhoneXSeries = window.safeAreaInsets.bottom > 0;
     }
     return iPhoneXSeries;
+    
+//    if (@available(iOS 11.0, *)) {//x系列的系统从iOS11开始
+//        if(UIApplication.sharedApplication.delegate.window.safeAreaInsets.bottom > 0.0) {
+//            iPhoneXSeries = YES;
+//        }
+//    }
+//    return iPhoneXSeries;
 }
 
 
