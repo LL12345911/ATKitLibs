@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-s.name         = "ATKitLibs"
-s.version      = "1.0.2"
+s.name         = "ATKitBaseLibs"
+s.version      = "1.0.3"
 s.summary      = "iOS开发基本库"
 
 s.description  = <<-DESC
