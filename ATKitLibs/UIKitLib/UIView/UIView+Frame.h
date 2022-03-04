@@ -118,23 +118,6 @@
 /// 同 [UIView convertRect:fromView:]，但支持在分属两个不同 window 的 view 之间进行坐标转换，也支持参数 view 直接传一个 window。
 - (CGRect)qmui_convertRect:(CGRect)rect fromView:(UIView *)view;
 
-///**
-// 移除当前所有 subviews
-// */
-//- (void)qmui_removeAllSubviews;
-//
-///// 同 [UIView convertPoint:toView:]，但支持在分属两个不同 window 的 view 之间进行坐标转换，也支持参数 view 直接传一个 window。
-//- (CGPoint)qmui_convertPoint:(CGPoint)point toView:(nullable UIView *)view;
-//
-///// 同 [UIView convertPoint:fromView:]，但支持在分属两个不同 window 的 view 之间进行坐标转换，也支持参数 view 直接传一个 window。
-//- (CGPoint)qmui_convertPoint:(CGPoint)point fromView:(nullable UIView *)view;
-//
-///// 同 [UIView convertRect:toView:]，但支持在分属两个不同 window 的 view 之间进行坐标转换，也支持参数 view 直接传一个 window。
-//- (CGRect)qmui_convertRect:(CGRect)rect toView:(nullable UIView *)view;
-//
-///// 同 [UIView convertRect:fromView:]，但支持在分属两个不同 window 的 view 之间进行坐标转换，也支持参数 view 直接传一个 window。
-//- (CGRect)qmui_convertRect:(CGRect)rect fromView:(nullable UIView *)view;
-
 
 @end
 

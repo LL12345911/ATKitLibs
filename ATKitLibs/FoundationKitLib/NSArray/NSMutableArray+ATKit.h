@@ -115,18 +115,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGRect)at_rectWithIndex:(NSUInteger)index;
 
 
-
-#pragma mark - block
-//- (void)at_each:(void (^)(id object))block;
-//- (void)at_eachWithIndex:(void (^)(id object, NSUInteger index))block;
-//- (NSArray *)at_map:(id (^)(id object))block;
-//- (NSArray *)at_filter:(BOOL (^)(id object))block;
-//- (NSArray *)at_reject:(BOOL (^)(id object))block;
-//- (id)at_detect:(BOOL (^)(id object))block;
-//- (id)at_reduce:(id (^)(id accumulator, id object))block;
-//- (id)at_reduce:(id)initial withBlock:(id (^)(id accumulator, id object))block;
-
-
 @end
 
 

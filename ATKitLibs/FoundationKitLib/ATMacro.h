@@ -50,12 +50,12 @@ CG_INLINE UIColor* kRandomColor(){
 #pragma mark -
 #pragma mark - 正则匹配用户密码6-18位数字和字母组合
 
-CG_INLINE BOOL checkPassword(NSString *password){
-    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,18}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
-    BOOL isMatch = [pred evaluateWithObject:password];
-    return isMatch;
-}
+//CG_INLINE BOOL checkPassword(NSString *password){
+//    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,18}";
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+//    BOOL isMatch = [pred evaluateWithObject:password];
+//    return isMatch;
+//}
 
 #pragma mark -
 #pragma mark - 数据验证 是否 为空
@@ -132,21 +132,21 @@ CG_INLINE NSString* kIfNullForZero(NSString *f){
 
 
 
-//获取一段时间间隔
+////获取一段时间间隔
+//
+//#define kStartTime CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
+//
+//#define kEndTime NSLog(@"Time: %f",CFAbsoluteTimeGetCurrent()- start)
 
-#define kStartTime CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
-
-#define kEndTime NSLog(@"Time: %f",CFAbsoluteTimeGetCurrent()- start)
-
-//由角度转换弧度
-#define kDegreesToRadian(x)      (M_PI * (x) / 180.0)
-//由弧度转换角度
-#define kRadianToDegrees(radian) (radian * 180.0) / (M_PI)
-
-/// 判断是否是横屏Judge whether current orientation is landscape.
-CG_INLINE BOOL kIsLandscape(){
-    return (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]));
-}
+////由角度转换弧度
+//#define kDegreesToRadian(x)      (M_PI * (x) / 180.0)
+////由弧度转换角度
+//#define kRadianToDegrees(radian) (radian * 180.0) / (M_PI)
+//
+///// 判断是否是横屏Judge whether current orientation is landscape.
+//CG_INLINE BOOL kIsLandscape(){
+//    return (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]));
+//}
 
 
 ///*
@@ -341,19 +341,6 @@ CG_INLINE NSString* debugReason(NSError * error){
 //NS_ASSUME_NONNULL_BEGIN
 
 @interface ATMacro : NSObject
-
-+ (BOOL)iPad;
-
-/// 判断iPhoneX iPhone 11 Pro、iPhone X、iPhone XS
-+ (BOOL)iPhoneX;
-
-/// 判断iPHoneXr
-+ (BOOL)iPhoneXR;
-
-//+ (BOOL)iPhoneXs;
-
-/// 判断 iPhone 11 Pro Max、iPhone 11、iPhone XS Max、iPhone XR
-+ (BOOL)iPhoneXMax;
 
 
 @end

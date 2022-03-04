@@ -106,69 +106,7 @@ typedef NS_ENUM(NSUInteger ,GradientType) {
 - (UIImage *)croppedImageAtFrame:(CGRect)frame;
 
 
-
-
-
-#pragma mark - blur image
-
-//- (UIImage *)at_lightImage;
-//- (UIImage *)at_extraLightImage;
-//- (UIImage *)at_darkImage;
-//- (UIImage *)at_tintedImageWithColor:(UIColor *)tintColor;
-//
-//- (UIImage *)at_blurredImageWithRadius:(CGFloat)blurRadius;
-//- (UIImage *)at_blurredImageWithSize:(CGSize)blurSize;
-//- (UIImage *)at_blurredImageWithSize:(CGSize)blurSize
-//                           tintColor:(UIColor *)tintColor
-//               saturationDeltaFactor:(CGFloat)saturationDeltaFactor
-//                           maskImage:(UIImage *)maskImage;
-//
-//#pragma mark - Blur
-//- (UIImage *)at_blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
-
-
-
 #pragma mark - 修正图片的方向
-///**
-// *  @brief  修正图片的方向
-// *  @param srcImg 图片
-// *  @return 修正方向后的图片
-// */
-//+ (UIImage *)at_fixOrientation:(UIImage *)srcImg;
-///**
-// *  @brief  旋转图片
-// *  @param degrees 角度
-// *  @return 旋转后图片
-// */
-//- (UIImage *)at_imageRotatedByDegrees:(CGFloat)degrees;
-///**
-// *  @brief  旋转图片
-// *  @param radians 弧度
-// *  @return 旋转后图片
-// */
-//- (UIImage *)at_imageRotatedByRadians:(CGFloat)radians;
-///**
-// *  @brief  垂直翻转
-// *  @return  翻转后的图片
-// */
-//- (UIImage *)at_flipVertical;
-///**
-// *  @brief  水平翻转
-// *  @return 翻转后的图片
-// */
-//- (UIImage *)at_flipHorizontal;
-///**
-// *  @brief  角度转弧度
-// *  @param degrees 角度
-// *  @return 弧度
-// */
-//+(CGFloat)at_degreesToRadians:(CGFloat)degrees;
-///**
-// *  @brief  弧度转角度
-// *  @param radians 弧度
-// *  @return 角度
-// */
-//+(CGFloat)at_radiansToDegrees:(CGFloat)radians;
 
 /**
  设置图片旋转角度
@@ -181,62 +119,7 @@ typedef NS_ENUM(NSUInteger ,GradientType) {
 
 #pragma mark -
 #pragma mark - 图片裁剪
-///**
-// *  改变Image的任何的大小
-// *  @param size 目的大小
-// *  @return 修改后的Image
-// */
-//- (UIImage *)at_cropImageWithAnySize:(CGSize)size;
-///**
-// *  裁剪和拉升图片
-// */
-//- (UIImage*)at_imageByScalingAndCroppingForTargetSize:(CGSize)targetSize;
-///**
-// *  返回圆形图片 直接操作layer.masksToBounds = YES 会比较卡顿
-// */
-//- (UIImage *)at_circleImage;
-///**
-// *  根据图片名返回一张能够自由拉伸的图片 (从中间拉伸)
-// */
-//+ (UIImage *)at_resizableImage:(NSString *)imgName;
-///**
-// *  根据图片名返回一张能够自由拉伸的图片
-// */
-//+ (UIImage *)at_resizableImage:(NSString *)imgName xPos:(CGFloat)xPos yPos:(CGFloat)yPos;
-///**
-// *  获取视频第一帧图片
-// */
-//+ (UIImage *)at_getVideoFirstThumbnailImageWithVideoUrl:(NSURL *)videoUrl;
-///**
-// *  图片不被渲染
-// */
-//+ (UIImage *)at_imageAlwaysShowOriginalImageWithImageName:(NSString *)imageName;
-///**
-// *  根据图片和颜色返回一张加深颜色以后的图片
-// *  图片着色
-// */
-//+ (UIImage *)at_colorizeImageWithSourceImage:(UIImage *)sourceImage color:(UIColor *)color;
-///**
-// *  根据指定的图片颜色和图片大小获取指定的Image
-// *  @param color 颜色
-// *  @param size  大小
-// */
-//+ (UIImage *)at_getImageWithColor:(UIColor *)color size:(CGSize)size;
-///**
-// *  通过传入一个图片对象获取一张缩略图
-// */
-//+ (UIImage *)at_getThumbnailImageWithImageObj:(id)imageObj;
-///**
-// *  通过传入一个图片对象获取一张原始图
-// */
-//+ (UIImage *)at_getOriginalImageWithImageObj:(id)imageObj;
-///**
-// *  将图片旋转到指定的方向
-// *  @param sourceImage 要旋转的图片
-// *  @param orientation 旋转方向
-// *  @return 返回旋转后的图片
-// */
-//+ (UIImage *)at_fixImageOrientationWithSourceImage:(UIImage *)sourceImage orientation:(UIImageOrientation)orientation;
+
 /**
  *  屏幕截图
  */
@@ -245,20 +128,20 @@ typedef NS_ENUM(NSUInteger ,GradientType) {
 
 #pragma mark -
 #pragma mark - 添加水印文字
-//// 给图片添加文字水印：
-//+ (UIImage *)at_WaterImageWithImage:(UIImage *)image text:(NSString *)text textPoint:(CGPoint)point attributedString:(NSDictionary * )attributed;
-//
-//
-//// 给图片添加图片水印
-//+ (UIImage *)at_WaterImageWithImage:(UIImage *)image waterImage:(UIImage *)waterImage waterImageRect:(CGRect)rect;
-//
-///**
-// *  打水印
-// *
-// *  @param backgroundImage   背景图片
-// *  @param markName 右下角的水印图片
-// */
-//+ (instancetype)at_WaterMarkWithImageName:(NSString *)backgroundImage andMarkImageName:(NSString *)markName;
+// 给图片添加文字水印：
++ (UIImage *)at_WaterImageWithImage:(UIImage *)image text:(NSString *)text textPoint:(CGPoint)point attributedString:(NSDictionary * )attributed;
+
+
+// 给图片添加图片水印
++ (UIImage *)at_WaterImageWithImage:(UIImage *)image waterImage:(UIImage *)waterImage waterImageRect:(CGRect)rect;
+
+/**
+ *  打水印
+ *
+ *  @param backgroundImage   背景图片
+ *  @param markName 右下角的水印图片
+ */
++ (instancetype)at_WaterMarkWithImageName:(NSString *)backgroundImage andMarkImageName:(NSString *)markName;
 
 /** 根据图片二进制流获取图片格式 */
 + (NSString *)imageTypeWithData:(NSData *)data;
