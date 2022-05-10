@@ -194,9 +194,9 @@
 /// 查找当前活动窗口.
 + (UIViewController *)activityViewController{
     UIViewController* activityViewController = nil;
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIWindow *window = [WindowsManager keyWindow];
     if(window.windowLevel != UIWindowLevelNormal){
-        NSArray *windows = [[UIApplication sharedApplication] windows];
+        NSArray *windows = [WindowsManager keyWindows];
         for(UIWindow *tmpWin in windows){
             if(tmpWin.windowLevel == UIWindowLevelNormal){
                 window = tmpWin;
