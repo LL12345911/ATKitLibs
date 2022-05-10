@@ -9,6 +9,8 @@
 #import "NSObject+ATAlert.h"
 #import <objc/runtime.h>
 #import "ATMacro.h"
+#import "WindowsManager.h"
+
 ///**
 // * 设置颜色
 // */
@@ -167,7 +169,7 @@
 
 /// 查找当前界面有没有一个AlertView.
 +(BOOL)isAlert{
-    if ([[UIApplication sharedApplication].keyWindow isMemberOfClass:[UIWindow class]])
+    if ([[WindowsManager keyWindow] isMemberOfClass:[UIWindow class]])
     {
         return  NO;
     }
@@ -226,7 +228,7 @@
  @return 当前控制器
  */
 + (UIViewController *)currentController {
-    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController* vc = [WindowsManager rootController];
     while (1) {
         if ([vc isKindOfClass:[UITabBarController class]]) {
             vc = ((UITabBarController*)vc).selectedViewController;

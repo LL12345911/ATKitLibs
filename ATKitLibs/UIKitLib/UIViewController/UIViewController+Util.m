@@ -10,6 +10,7 @@
 #import "UIViewController+Util.h"
 #import "UIBarButtonItem+SXCreate.h"
 #import "UINavigationBar+NavBar.h"
+#import "WindowsManager.h"
 
 #import <objc/runtime.h>
 
@@ -187,7 +188,7 @@ void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector){
         [self.indicatorBack removeFromSuperview];
         
         // UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        UIWindow *window = UIApplication.sharedApplication.delegate.window;
+        UIWindow *window = [WindowsManager keyWindow];
         //    window.windowLevel = UIWindowLevelAlert;
         CGFloat height = self.view.frame.size.height;
         CGFloat width = self.view.frame.size.width;

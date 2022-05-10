@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+ATKit.h"
+#import "WindowsManager.h"
 
 @implementation UIViewController (ATKit)
 
@@ -128,7 +129,7 @@
 #pragma mark -  ATKit
 
 - (void)setKeyBoardDismiss{
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[WindowsManager keyWindow] endEditing:YES];
 }
 
 - (void)setLargeTitleDisplayModeNever{
@@ -175,94 +176,94 @@
     }
 }
 
+//
+//+ (UIViewController *)rootTopPresentedController {
+//    return [self rootTopPresentedControllerWihtKeys:nil];
+//}
+//+ (UIViewController *)rootTopPresentedControllerWihtKeys:(NSArray<NSString *> *)keys {
+//    return [[[[UIApplication sharedApplication] delegate] window].rootViewController topPresentedControllerWihtKeys:keys];
+//}
+//
+//
+////获取当前控制器
+//- (UIViewController *)currentController {
+//    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+//    while (1) {
+//        if ([vc isKindOfClass:[UITabBarController class]]) {
+//            vc = ((UITabBarController*)vc).selectedViewController;
+//        }
+//        if ([vc isKindOfClass:[UINavigationController class]]) {
+//            vc = ((UINavigationController*)vc).visibleViewController;
+//        }
+//        if (vc.presentedViewController) {
+//            vc = vc.presentedViewController;
+//        }else{
+//            break;
+//        }
+//    }
+//    return vc;
+//}
+//
+//
+//- (UIWindow *)getKeyWindow{
+//    UIWindow* window = nil;
+//    if (@available(iOS 13.0, *)){
+//        for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes){
+//            if (windowScene.activationState == UISceneActivationStateForegroundActive){
+//                window = windowScene.windows.firstObject;
+//                
+//                break;
+//            }
+//        }
+//    }else {
+//        window = [UIApplication sharedApplication].keyWindow;
+//    }
+//    return window;
+//}
 
-+ (UIViewController *)rootTopPresentedController {
-    return [self rootTopPresentedControllerWihtKeys:nil];
-}
-+ (UIViewController *)rootTopPresentedControllerWihtKeys:(NSArray<NSString *> *)keys {
-    return [[[[UIApplication sharedApplication] delegate] window].rootViewController topPresentedControllerWihtKeys:keys];
-}
 
-
-//获取当前控制器
-- (UIViewController *)currentController {
-    UIViewController* vc = [UIApplication sharedApplication].keyWindow.rootViewController;
-    while (1) {
-        if ([vc isKindOfClass:[UITabBarController class]]) {
-            vc = ((UITabBarController*)vc).selectedViewController;
-        }
-        if ([vc isKindOfClass:[UINavigationController class]]) {
-            vc = ((UINavigationController*)vc).visibleViewController;
-        }
-        if (vc.presentedViewController) {
-            vc = vc.presentedViewController;
-        }else{
-            break;
-        }
-    }
-    return vc;
-}
-
-
-- (UIWindow *)getKeyWindow{
-    UIWindow* window = nil;
-    if (@available(iOS 13.0, *)){
-        for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes){
-            if (windowScene.activationState == UISceneActivationStateForegroundActive){
-                window = windowScene.windows.firstObject;
-                
-                break;
-            }
-        }
-    }else {
-        window = [UIApplication sharedApplication].keyWindow;
-    }
-    return window;
-}
-
-
-
-- (UIViewController *)topPresentedController {
-    return [self topPresentedControllerWihtKeys:nil];
-}
-- (UIViewController *)topPresentedControllerWihtKeys:(NSArray<NSString *> *)keys {
-    keys = keys ?: @[@"centerViewController", @"contentViewController"];
-    
-    UIViewController *rootVC = self;
-    if ([rootVC isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tab = (UITabBarController *)rootVC;
-        UIViewController *vc = tab.selectedViewController ?: tab.childViewControllers.firstObject;
-        if (vc) {
-            return [vc topPresentedControllerWihtKeys:keys];
-        }
-    }
-    
-    for (NSString *key in keys) {
-        if ([rootVC respondsToSelector:NSSelectorFromString(key)]) {
-            UIViewController *vc;
-            @try {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                vc = [rootVC performSelector:NSSelectorFromString(key)];
-#pragma clang diagnostic pop
-            } @catch (NSException *exception) {
-            }
-            if ([vc isKindOfClass:[UIViewController class]]) {
-                return [vc topPresentedControllerWihtKeys:keys];
-            }
-        }
-    }
-    
-    while (rootVC.presentedViewController && !rootVC.presentedViewController.isBeingDismissed) {
-        rootVC = rootVC.presentedViewController;
-    }
-    
-    if ([rootVC isKindOfClass:[UINavigationController class]]) {
-        rootVC = ((UINavigationController *)rootVC).topViewController;
-    }
-    
-    return rootVC;
-}
+//
+//- (UIViewController *)topPresentedController {
+//    return [self topPresentedControllerWihtKeys:nil];
+//}
+//- (UIViewController *)topPresentedControllerWihtKeys:(NSArray<NSString *> *)keys {
+//    keys = keys ?: @[@"centerViewController", @"contentViewController"];
+//    
+//    UIViewController *rootVC = self;
+//    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+//        UITabBarController *tab = (UITabBarController *)rootVC;
+//        UIViewController *vc = tab.selectedViewController ?: tab.childViewControllers.firstObject;
+//        if (vc) {
+//            return [vc topPresentedControllerWihtKeys:keys];
+//        }
+//    }
+//    
+//    for (NSString *key in keys) {
+//        if ([rootVC respondsToSelector:NSSelectorFromString(key)]) {
+//            UIViewController *vc;
+//            @try {
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//                vc = [rootVC performSelector:NSSelectorFromString(key)];
+//#pragma clang diagnostic pop
+//            } @catch (NSException *exception) {
+//            }
+//            if ([vc isKindOfClass:[UIViewController class]]) {
+//                return [vc topPresentedControllerWihtKeys:keys];
+//            }
+//        }
+//    }
+//    
+//    while (rootVC.presentedViewController && !rootVC.presentedViewController.isBeingDismissed) {
+//        rootVC = rootVC.presentedViewController;
+//    }
+//    
+//    if ([rootVC isKindOfClass:[UINavigationController class]]) {
+//        rootVC = ((UINavigationController *)rootVC).topViewController;
+//    }
+//    
+//    return rootVC;
+//}
 
 - (NSArray<UIViewController *> *)optimizeVcs:(NSArray<UIViewController *> *)vcs {
     return [self optimizeVcs:vcs maxCount:1];

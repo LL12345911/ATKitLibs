@@ -9,6 +9,7 @@
 #import "UIViewController+Animation.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import "WindowsManager.h"
 
 #define kPopupModalAnimationDuration 0.35
 #define kATPopupViewController @"kATPopupViewController"
@@ -125,10 +126,11 @@ static void * const keypath = (void*)&keypath;
 }
 
 - (UIViewController*)topViewController {
-    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    return [self topViewControllerWithRootViewController:[WindowsManager rootController]];
 }
 
-- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+
+-(UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {
         UITabBarController* tabBarController = (UITabBarController*)rootViewController;
         return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];

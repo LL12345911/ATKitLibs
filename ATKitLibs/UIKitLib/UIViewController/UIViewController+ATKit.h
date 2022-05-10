@@ -73,22 +73,22 @@
 - (void)dismissOrPopToRootController:(BOOL)animated;
 
 /**
- 获取当前控制器
-
- @return 当前控制器
- */
-- (UIViewController *)currentController;
-
-/// 获取 KeyWindow
-- (UIWindow *)getKeyWindow;
-
-/**
- *  获取根目录
- */
-- (UIViewController *)topPresentedController;
-- (UIViewController *)topPresentedControllerWihtKeys:(NSArray<NSString *> *)keys;
-+ (UIViewController *)rootTopPresentedController;
-+ (UIViewController *)rootTopPresentedControllerWihtKeys:(NSArray<NSString *> *)keys;
+// 获取当前控制器
+//
+// @return 当前控制器
+// */
+//- (UIViewController *)currentController;
+//
+///// 获取 KeyWindow
+//- (UIWindow *)getKeyWindow;
+//
+///**
+// *  获取根目录
+// */
+//- (UIViewController *)topPresentedController;
+//- (UIViewController *)topPresentedControllerWihtKeys:(NSArray<NSString *> *)keys;
+//+ (UIViewController *)rootTopPresentedController;
+//+ (UIViewController *)rootTopPresentedControllerWihtKeys:(NSArray<NSString *> *)keys;
 /**
  *  控制器数组中 仅存在一个实例
  */
