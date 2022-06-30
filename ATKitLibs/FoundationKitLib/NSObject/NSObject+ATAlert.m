@@ -17,7 +17,7 @@
 //#define ATColorFromHexString(__hexString__) [UIColor colorFromHexString:__hexString__]
 
 /// 全局青色 tintColor
-//CG_INLINE UIColor* Cat_MAIN_TINTCOLOR(){
+//NS_INLINE UIColor* Cat_MAIN_TINTCOLOR(){
 //    return [UIColor colorWithRed:(10 / 255.0) green:(193 / 255.0) blue:(42 / 255.0) alpha:1];
 //}
 
