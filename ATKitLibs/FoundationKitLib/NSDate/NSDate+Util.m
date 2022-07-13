@@ -628,9 +628,9 @@ _Pragma("clang diagnostic pop") \
 {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"yyyy-MM-dd";
-    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    fmt.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    fmt.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    fmt.locale = [NSLocale systemLocale];
+    fmt.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+    [fmt setTimeZone:[NSTimeZone systemTimeZone]];
     NSString *selfStr = [fmt stringFromDate:self];
     return [fmt dateFromString:selfStr];
 }
@@ -638,9 +638,9 @@ _Pragma("clang diagnostic pop") \
 -(NSDate *)dateWithFormatter:(NSString *)formatter {
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = formatter;
-    fmt.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    fmt.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    fmt.locale = [NSLocale systemLocale];
+    fmt.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+    [fmt setTimeZone:[NSTimeZone systemTimeZone]];
     NSString *selfStr = [fmt stringFromDate:self];
     return [fmt dateFromString:selfStr];
 }
