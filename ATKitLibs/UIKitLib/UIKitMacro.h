@@ -89,6 +89,7 @@
 #import "Helper.h"
 #import "MarsTabBar.h"
 #import "UIKitLibDefine.h"
+#import "AuthcodeView.h"
 
 //#import "SGWebView.h"
 

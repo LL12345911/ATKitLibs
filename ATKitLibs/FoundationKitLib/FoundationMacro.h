@@ -23,7 +23,6 @@
 //NSString
 #import "NSString+ATKit.h"
 #import "Base64.h"
-#import "JsonTransform.h"
 
 #import "XTimer.h"
 
@@ -33,5 +32,10 @@
 #import "ATMacro.h"
 #import "AutoInch.h"
 
+#import "AttributedStringBuilder.h"
+#import "AttributeStringBuilder.h"
+
+#import "JsonTransForm.h"
+#import "YHDrawImage.h"
 
 #endif /* FoundationMacro_h */
