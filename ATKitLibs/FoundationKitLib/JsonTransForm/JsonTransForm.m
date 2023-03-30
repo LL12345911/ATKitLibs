@@ -96,7 +96,7 @@
  * @return NSDictionary（字典）
  
  */
-+ (NSDictionary *)toDictWithJsonStr:(NSString *)jsonString {
++ (NSDictionary *)jsonStringToDict:(NSString *)jsonString {
     
     if (jsonString == nil) {
         return nil;
@@ -125,7 +125,7 @@
  * @return NSArray（数组）
  
  */
-+ (NSArray *)toArrayWithJsonStr:(NSString *)jsonString {
++ (NSArray *)jsonStringToArray:(NSString *)jsonString {
     
     if (jsonString == nil) {
         return nil;
@@ -157,7 +157,7 @@
  *
  * @return 字典
  */
-+ (NSDictionary *)toDictFromObject:(id)obj {
++ (NSDictionary *)objectToDict:(id)obj {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     unsigned int propsCount;
     objc_property_t *props = class_copyPropertyList([obj class], &propsCount);
@@ -182,8 +182,24 @@
 }
 
 
-+ (NSData*)toDataFromObject:(id)obj options:(NSJSONWritingOptions)options error:(NSError**)error {
-    return [NSJSONSerialization dataWithJSONObject:[self toDictFromObject:obj] options:options error:error];
++ (NSString *)objectToJsonString:(id)obj options:(NSJSONWritingOptions)options error:(NSError**)error {
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self objectToDict:obj] options:options error:error];
+    if (!jsonData) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+
++ (NSString *)objectToJsonString:(id)obj options:(NSJSONWritingOptions)options {
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self objectToDict:obj] options:options error:&error];
+    if (!error) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 
@@ -213,7 +229,7 @@
         }
         return dic;
     }
-    return [self toDictFromObject:obj];
+    return [self objectToDict:obj];
 }
 
 

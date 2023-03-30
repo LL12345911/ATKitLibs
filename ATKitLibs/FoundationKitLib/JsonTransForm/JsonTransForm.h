@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return NSDictionary（字典）
  */
-+ (NSDictionary *)toDictWithJsonStr:(NSString *)jsonString;
++ (NSDictionary *)jsonStringToDict:(NSString *)jsonString;
 
 
 /**
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return NSArray（数组）
  */
-+ (NSArray *)toArrayWithJsonStr:(NSString *)jsonString;
++ (NSArray *)jsonStringToArray:(NSString *)jsonString;
 
 
 
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @return 字典
  */
-+ (NSDictionary *)toDictFromObject:(id)obj;
++ (NSDictionary *)objectToDict:(id)obj;
 
 
 /**
@@ -70,10 +70,19 @@ NS_ASSUME_NONNULL_BEGIN
  * @param obj 需要序列换的参数
  * @param error 失败时，失败信息
  *
- * @return 修改的json的数据data
+ * @return 修改的json 字符串的数据
  */
-+ (NSData *)toDataFromObject:(id)obj options:(NSJSONWritingOptions)options error:(NSError**)error;
++ (NSString *)objectToJsonString:(id)obj options:(NSJSONWritingOptions)options error:(NSError**)error;
 
+
+/**
+ * 将对象序列换成JSON字符串
+ *
+ * @param obj 需要序列换的参数
+ *
+ * @return 修改的json 字符串的数据
+ */
++ (NSString *)objectToJsonString:(id)obj options:(NSJSONWritingOptions)options;
 
 
 @end
