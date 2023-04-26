@@ -62,7 +62,6 @@
 		41D0ED892799332D004F2A31 /* NotificationPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D0ED572799332D004F2A31 /* NotificationPermission.m */; };
 		41D0ED8A2799332D004F2A31 /* AuthorizationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D0ED582799332D004F2A31 /* AuthorizationManager.m */; };
 		41D0ED8B2799332D004F2A31 /* BasePermisssion.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D0ED5B2799332D004F2A31 /* BasePermisssion.m */; };
-		41D325F529CD98E500F9E976 /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D325F129CD98E400F9E976 /* AttributedStringBuilder.m */; };
 		41D325F629CD98E500F9E976 /* AttributeStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D325F429CD98E400F9E976 /* AttributeStringBuilder.m */; };
 		41D3260129CD98ED00F9E976 /* JsonTransForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D325F929CD98ED00F9E976 /* JsonTransForm.m */; };
 		41D3260229CD98ED00F9E976 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 41D325FE29CD98ED00F9E976 /* README.md */; };
@@ -207,8 +206,6 @@
 		41D0ED5B2799332D004F2A31 /* BasePermisssion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePermisssion.m; sourceTree = "<group>"; };
 		41D0ED5C2799332D004F2A31 /* AuthorizationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationProtocol.h; sourceTree = "<group>"; };
 		41D0ED5D2799332D004F2A31 /* BasePermisssion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePermisssion.h; sourceTree = "<group>"; };
-		41D325F029CD98E400F9E976 /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
-		41D325F129CD98E400F9E976 /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
 		41D325F329CD98E400F9E976 /* AttributeStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeStringBuilder.h; sourceTree = "<group>"; };
 		41D325F429CD98E400F9E976 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeStringBuilder.m; sourceTree = "<group>"; };
 		41D325F829CD98ED00F9E976 /* JsonTransForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonTransForm.h; sourceTree = "<group>"; };
@@ -676,20 +673,10 @@
 		41D325EF29CD98E400F9E976 /* AttributedString */ = {
 			isa = PBXGroup;
 			children = (
-				41D325F029CD98E400F9E976 /* AttributedStringBuilder.h */,
-				41D325F129CD98E400F9E976 /* AttributedStringBuilder.m */,
-				41D325F229CD98E400F9E976 /* Builder */,
-			);
-			path = AttributedString;
-			sourceTree = "<group>";
-		};
-		41D325F229CD98E400F9E976 /* Builder */ = {
-			isa = PBXGroup;
-			children = (
 				41D325F329CD98E400F9E976 /* AttributeStringBuilder.h */,
 				41D325F429CD98E400F9E976 /* AttributeStringBuilder.m */,
 			);
-			path = Builder;
+			path = AttributedString;
 			sourceTree = "<group>";
 		};
 		41D325F729CD98ED00F9E976 /* JsonTransForm */ = {
@@ -931,7 +918,6 @@
 				41D0ED662799332D004F2A31 /* NSObject+ATAlert.m in Sources */,
 				41D0ED842799332D004F2A31 /* UILabel+PPCounter.m in Sources */,
 				41D3260829CD996E00F9E976 /* AuthcodeView.m in Sources */,
-				41D325F529CD98E500F9E976 /* AttributedStringBuilder.m in Sources */,
 				41D0ED5E2799332D004F2A31 /* CoordinateConverter.m in Sources */,
 				41D3260429CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m in Sources */,
 				41D0ED7E2799332D004F2A31 /* ATFPSView.m in Sources */,
