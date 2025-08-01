@@ -20,6 +20,43 @@
 
 @implementation AttributeStringBuilder
 
+
+/// 计算文本高度
+/// - Parameters:
+///   - attributedString: 富文本
+///   - width: 宽度
++ (CGSize)calculateForAttributedString:(NSAttributedString *)attributedString withWidth:(CGFloat)width {
+    NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
+    NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+    [textStorage addLayoutManager:layoutManager];
+    
+    NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(width, CGFLOAT_MAX)];
+    textContainer.lineBreakMode = NSLineBreakByWordWrapping; // Set appropriate line break mode
+    
+    [layoutManager addTextContainer:textContainer];
+    
+    // Force layout
+    [layoutManager glyphRangeForTextContainer:textContainer];
+    // NSRange glyphRange = [layoutManager glyphRangeForTextContainer:textContainer];
+    CGRect textRect = [layoutManager usedRectForTextContainer:textContainer];
+    
+    //    CGFloat height = CGRectGetHeight(textRect);
+    //    return textRect.size;
+    
+    //    // 计算宽高
+    //    CGSize maxSize = CGSizeMake(width, CGFLOAT_MAX);
+    //    CGRect boundingRect = [attributedString boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    //
+    //    // 获取宽高
+    //    CGFloat width = CGRectGetWidth(boundingRect);
+    //    CGFloat height = CGRectGetHeight(boundingRect);
+    //
+    //    NSLog(@"宽度: %f, 高度: %f", width, height);
+    
+    
+    return textRect.size;
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         self.attributes = [[NSMutableDictionary alloc] init];
@@ -30,6 +67,17 @@
 
 - (NSAttributedString *)commit {
     return _source;
+}
+
+/**
+ 获取当前 NSRange，当append、及获取range时
+ */
+- (NSRange)currentRange {
+    if (self.scr_ranges.count > 0) {
+        NSValue *rangeValue = self.scr_ranges[0];
+        return [rangeValue rangeValue];
+    }
+    return NSMakeRange(NSNotFound, NSNotFound);
 }
 
 
@@ -73,7 +121,7 @@
             return self;
         }
         [self.source insertAttributedString:[[NSAttributedString alloc] initWithString:string]
-                             atIndex:index];
+                                    atIndex:index];
         NSRange range = NSMakeRange(index, string.length);
         self.scr_ranges = @[ [NSValue valueWithRange:range] ];
         return self;
@@ -87,7 +135,7 @@
         if (spacing <= 0) {
             return self;
         }
-
+        
         NSTextAttachment *attachment = [NSTextAttachment new];
         attachment.image = nil;
         attachment.bounds = CGRectMake(0, 0, spacing, 0);
@@ -155,7 +203,7 @@
         attachment.image = image;
         attachment.bounds = CGRectMake(0, offset, imageSize.width, imageSize.height);
         [self.source insertAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]
-                             atIndex:index];
+                                    atIndex:index];
         NSMutableArray *ranges = [NSMutableArray array];
         for (NSInteger i = 0; i < self.scr_ranges.count; i++) {
             NSRange range = [self.scr_ranges[i] rangeValue];
@@ -179,7 +227,7 @@
             attachment.image = image;
             attachment.bounds = CGRectMake(0, offset, imageSize.width, imageSize.height);
             [self.source insertAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]
-                                 atIndex:range.location];
+                                        atIndex:range.location];
             range.location += (index + 1);
             [ranges addObject:[NSValue valueWithRange:range]];
         }
@@ -203,6 +251,17 @@
     };
 }
 
+/// 从结尾倒数location 、 length 设置范围
+- (AttributeStringBuilder *(^)(NSInteger, NSInteger))lastRange {
+    return ^(NSInteger location, NSInteger length) {
+        if (location < 0 || length <= 0 || self.source.length - location + length > self.source.length) {
+            return self;
+        }
+        NSRange range = NSMakeRange(self.source.length - location, length);
+        self.scr_ranges = @[ [NSValue valueWithRange:range] ];
+        return self;
+    };
+}
 
 /// 将范围设置为当前字符串全部
 - (AttributeStringBuilder *)all {
@@ -278,7 +337,7 @@
         }
         
         self.scr_ranges = [self searchString:regularExpression options:NSRegularExpressionSearch all:all];
-
+        
         return self;
     };
 }
@@ -302,7 +361,7 @@
         
         while(range.location != NSNotFound && searchRange.location < str.length) {
             range = [str rangeOfString:searchString options:options range:searchRange];
-
+            
             if (range.location != NSNotFound) {
                 [tempArr addObject:[NSValue valueWithRange:range]];
                 
@@ -330,6 +389,15 @@
 - (AttributeStringBuilder *(^)(CGFloat))fontSize {
     return ^(CGFloat fontSize) {
         UIFont *font = [UIFont systemFontOfSize:fontSize];
+        [self addAttribute:NSFontAttributeName value:font];
+        return self;
+    };
+}
+
+/// 字号，默认字体
+- (AttributeStringBuilder *(^)(CGFloat boldFontSize))boldFontSize{
+    return ^(CGFloat boldFontSize) {
+        UIFont *font = [UIFont boldSystemFontOfSize:boldFontSize];
         [self addAttribute:NSFontAttributeName value:font];
         return self;
     };
@@ -364,7 +432,6 @@
 }
 
 
-
 /**
  背景圆角
  
@@ -383,7 +450,7 @@
         
         
         UIImage *img1 = [self drawRadius:radius text:text font:font corners:UIRectCornerAllCorners imgSize:CGSizeMake(0, 0) textColor:textColor fillColor:fillColor insets:UIEdgeInsetsMake(0, 0, 0, 0) margins:UIEdgeInsetsMake(0, 0, 0, 0) strokeColor:nil lineWidth:0];
-
+        
         
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = img1;
@@ -415,7 +482,7 @@
         
         
         UIImage *img1 = [self drawRadius:radius text:text font:font corners:UIRectCornerAllCorners imgSize:imgSize textColor:textColor fillColor:fillColor insets:UIEdgeInsetsMake(0, 0, 0, 0) margins:UIEdgeInsetsMake(0, 0, 0, 0) strokeColor:nil lineWidth:0];
-
+        
         
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = img1;
@@ -445,7 +512,7 @@
         
         
         UIImage *img1 = [self drawRadius:radius text:text font:font corners:corners imgSize:CGSizeMake(0, 0) textColor:textColor fillColor:fillColor insets:UIEdgeInsetsMake(0, 0, 0, 0) margins:UIEdgeInsetsMake(0, 0, 0, 0) strokeColor:nil lineWidth:0];
-
+        
         
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = img1;
@@ -475,7 +542,7 @@
         
         
         UIImage *img1 = [self drawRadius:radius text:text font:font corners:corners imgSize:imgSize textColor:textColor fillColor:fillColor insets:UIEdgeInsetsMake(0, 0, 0, 0) margins:UIEdgeInsetsMake(0, 0, 0, 0) strokeColor:nil lineWidth:0];
-
+        
         
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = img1;
@@ -512,7 +579,7 @@
         
         
         UIImage *img1 = [self drawRadius:radius text:text font:font corners:corners imgSize:imgSize textColor:textColor fillColor:fillColor insets:insets margins:margins strokeColor:strokeColor lineWidth:lineWidth];
-
+        
         
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = img1;
@@ -540,7 +607,7 @@
  
  */
 - (UIImage*)drawRadius:(CGFloat)radius text:(NSString *)text font:(UIFont *)font corners:(UIRectCorner)corners imgSize:(CGSize)imgSize textColor:(UIColor *)textColor fillColor:(UIColor *)fillColor insets:(UIEdgeInsets)insets margins:(UIEdgeInsets)margins strokeColor:(UIColor *)strokeColor lineWidth:(CGFloat)lineWidth {
-
+    
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:text];
     if (font) {
         [attrStr addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, text.length)];
@@ -569,15 +636,15 @@
     CGFloat maxStrWidth = imgSize.width - (insets.left + insets.right + lineWidth);
     CGFloat maxStrHeight = imgSize.height - (insets.top + insets.bottom + lineWidth);
     CGSize strSize = [attrStr boundingRectWithSize:CGSizeMake(maxStrWidth > 0 ? maxStrWidth : CGFLOAT_MAX, maxStrHeight > 0 ? maxStrHeight : CGFLOAT_MAX)
-                                            options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                            context:nil].size;
+                                           options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                           context:nil].size;
     CGSize drawSize = imgSize;
     drawSize = CGSizeMake(drawSize.width > 0 ? drawSize.width : strSize.width + insets.left + insets.right + lineWidth,
                           drawSize.height > 0 ? drawSize.height : strSize.height + insets.top + insets.bottom + lineWidth);
     
     drawSize = CGSizeMake(drawSize.width + margins.left + margins.right,
                           drawSize.height + margins.top + margins.bottom);
-
+    
     /* 1.设置当前上下文中绘制的区域 */
     UIGraphicsBeginImageContextWithOptions(drawSize, NO, 0);
     
@@ -587,26 +654,26 @@
                       CGFloat radiusTopRight,
                       CGFloat radiusBottomLeft,
                       CGFloat radiusBottomRight) = ^(CGRect rrect,
-                                                    CGFloat radiusTopLeft,
-                                                    CGFloat radiusTopRight,
-                                                    CGFloat radiusBottomLeft,
-                                                    CGFloat radiusBottomRight){
-        CGFloat
-        minx = CGRectGetMinX(rrect),
-        midx = CGRectGetMidX(rrect),
-        maxx = CGRectGetMaxX(rrect);
-        CGFloat
-        miny = CGRectGetMinY(rrect),
-        midy = CGRectGetMidY(rrect),
-        maxy = CGRectGetMaxY(rrect);
-        CGContextMoveToPoint(ctx, minx, midy);
-        CGContextAddArcToPoint(ctx, minx, miny, midx, miny, radiusTopLeft);
-        CGContextAddArcToPoint(ctx, maxx, miny, maxx, midy, radiusTopRight);
-        CGContextAddArcToPoint(ctx, maxx, maxy, midx, maxy, radiusBottomLeft);
-        CGContextAddArcToPoint(ctx, minx, maxy, minx, midy, radiusBottomRight);
-        CGContextClosePath(ctx);
-        CGContextDrawPath(ctx, kCGPathFillStroke);
-    };
+                                                     CGFloat radiusTopLeft,
+                                                     CGFloat radiusTopRight,
+                                                     CGFloat radiusBottomLeft,
+                                                     CGFloat radiusBottomRight){
+                          CGFloat
+                          minx = CGRectGetMinX(rrect),
+                          midx = CGRectGetMidX(rrect),
+                          maxx = CGRectGetMaxX(rrect);
+                          CGFloat
+                          miny = CGRectGetMinY(rrect),
+                          midy = CGRectGetMidY(rrect),
+                          maxy = CGRectGetMaxY(rrect);
+                          CGContextMoveToPoint(ctx, minx, midy);
+                          CGContextAddArcToPoint(ctx, minx, miny, midx, miny, radiusTopLeft);
+                          CGContextAddArcToPoint(ctx, maxx, miny, maxx, midy, radiusTopRight);
+                          CGContextAddArcToPoint(ctx, maxx, maxy, midx, maxy, radiusBottomLeft);
+                          CGContextAddArcToPoint(ctx, minx, maxy, minx, midy, radiusBottomRight);
+                          CGContextClosePath(ctx);
+                          CGContextDrawPath(ctx, kCGPathFillStroke);
+                      };
     CGFloat r = 0, g, b, a;
     if (strokeColor) {
         [strokeColor getRed:&r green:&g blue:&b alpha:&a];
@@ -641,7 +708,7 @@
     
     
     return image;
-
+    
 }
 
 
@@ -676,13 +743,13 @@
 
 /**
  下划线风格
-
-@discussion NSUnderlineStyleNone 默认值
-@discussion NSUnderlineStyleNone 不设置删除线
-@discussion NSUnderlineStyleSingle 设置删除线为细单实线
-@discussion NSUnderlineStyleThick 设置删除线为粗单实线
-@discussion NSUnderlineStyleDouble 设置删除线为细双实线
-*/
+ 
+ @discussion NSUnderlineStyleNone 默认值
+ @discussion NSUnderlineStyleNone 不设置删除线
+ @discussion NSUnderlineStyleSingle 设置删除线为细单实线
+ @discussion NSUnderlineStyleThick 设置删除线为粗单实线
+ @discussion NSUnderlineStyleDouble 设置删除线为细双实线
+ */
 - (AttributeStringBuilder *(^)(NSUnderlineStyle))underlineStyle {
     return ^(NSUnderlineStyle style) {
         [self addAttribute:NSUnderlineStyleAttributeName value:@(style)];
@@ -733,10 +800,18 @@
     };
 }
 
-/// 链接
+/// 链接URL对象 NSURL
 - (AttributeStringBuilder *(^)(NSURL *))link {
     return ^(NSURL *url) {
         [self addAttribute:NSLinkAttributeName value:url];
+        return self;
+    };
+}
+
+/// 链接URL 字符串
+- (AttributeStringBuilder *(^)(NSString *))linkUrlStr {
+    return ^(NSString *linkUrlStr) {
+        [self addAttribute:NSLinkAttributeName value:linkUrlStr];
         return self;
     };
 }
@@ -860,6 +935,78 @@
     };
 }
 
+/// 动态添加字间距
+/// @Discussion baseText  基准文本 ,   @"道路路路名名称"
+/// @Discussion dynamicText  动态文本 , @"上报人“
+/// @Discussion font 字体
+/// @code
+///  AttributeStringBuilder *build = AttributeStringBuilder.build(@"NSBackgroundColorAttributeName 圆角")
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"道路路路名名称：").font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"上报人").font([UIFont systemFontOfSize:14]).dynamicKern(@"道路路路名名称", @"上报人", [UIFont systemFontOfSize:14])
+- (AttributeStringBuilder *(^)(NSString *baseText, NSString *dynamicText, UIFont *font))dynamicKern {
+    return ^(NSString *baseText, NSString *dynamicText, UIFont *font) {
+        // 计算基准文本的宽度
+        CGFloat baseTextWidth = [self generateAttributedString:baseText font:font];
+        
+        // 计算动态文本的宽度并调整字间距
+        CGFloat dynamicTextWidth = [self generateAttributedString:dynamicText font:font];
+        
+        if (dynamicText.length < 2) {
+            return self;
+        }
+        CGFloat kerningAdjustment = (baseTextWidth - dynamicTextWidth) / (dynamicText.length - 1);
+        
+        // 调整动态文本的字间距
+        [self addAttribute:NSKernAttributeName value:@(kerningAdjustment)];
+        
+        return self;
+    };
+}
+
+/// 添加文字并设置字间距
+/// @Discussion baseText  基准文本 ,   @"道路路路名名称："
+/// @Discussion dynamicText  动态文本 , @"上报人：“
+/// @Discussion font 字体
+/// @code
+///  AttributeStringBuilder *build = AttributeStringBuilder.build(@"NSBackgroundColorAttributeName 圆角")
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"道路路路名名称：").font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"上报人").font([UIFont systemFontOfSize:14]).dynamicKern(@"道路路路名名称", @"上报人", [UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .appendDynamicKern(@"道路路路名名称：", @"上报人：", [UIFont systemFontOfSize:14]).font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+- (AttributeStringBuilder *(^)(NSString *baseText, NSString *dynamicText, UIFont *font))appendDynamicKern {
+    return ^(NSString *baseText, NSString *dynamicText, UIFont *font) {
+        
+        /// 尾部追加一个新的 Attributed String
+        NSRange range = NSMakeRange(self.source.length, dynamicText.length);
+        [self.source appendAttributedString:[[NSAttributedString alloc] initWithString:dynamicText]];
+        self.scr_ranges = @[ [NSValue valueWithRange:range] ];
+        
+        // 计算基准文本的宽度
+        CGFloat baseTextWidth = [self generateAttributedString:baseText font:font];
+        
+        // 计算动态文本的宽度并调整字间距
+        CGFloat dynamicTextWidth = [self generateAttributedString:dynamicText font:font];
+        
+        if (dynamicText.length <= 2) {
+            return self;
+        }
+        CGFloat kerningAdjustment = (baseTextWidth - dynamicTextWidth) / (dynamicText.length - 2);
+        
+        // 调整动态文本的字间距
+        for (NSValue *rangeValue in self.scr_ranges) {
+            NSRange range = [rangeValue rangeValue];
+            [self.source addAttribute:NSKernAttributeName value:@(kerningAdjustment) range:NSMakeRange(range.location, range.length-2)];
+        }
+        return self;
+    };
+}
+
+
 /// 倾斜
 - (AttributeStringBuilder *(^)(CGFloat))obliqueness {
     return ^(CGFloat obliqueness) {
@@ -877,6 +1024,22 @@
 }
 
 #pragma mark - Private
+
+
+/// 返回 富文本宽度
+/// - Parameters:
+///   - baseText:  基准文本
+///   - font: 字体
+- (CGFloat)generateAttributedString:(NSString *)baseText font:(UIFont *)font {
+    NSMutableAttributedString *baseAttributedString = [[NSMutableAttributedString alloc] initWithString:baseText];
+    [baseAttributedString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, baseText.length)];
+    
+    // 计算基准文本的宽度
+    CGRect baseTextRect = [baseText boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
+    CGFloat baseTextWidth = baseTextRect.size.width;
+    return baseTextWidth;
+    
+}
 
 - (void)addAttribute:(NSAttributedStringKey)name value:(id)value {
     for (NSValue *rangeValue in self.scr_ranges) {

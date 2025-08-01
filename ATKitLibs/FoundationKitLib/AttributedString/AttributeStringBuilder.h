@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion shadow.shadowOffset = CGSizeMake(2, 2);
  @discussion NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
  
- @discussion attachment.image = [UIImage imageNamed:@"luffer"];
+ @discussion attachment.image = [UIImage custom_imageNamed:@"appIcon_luffer"];
  @discussion attachment.bounds = CGRectMake(0, 0, 50, 50);
  @discussion NSString *text = @"测试多行文字测试多行文字测试多行文字链接测试多行文字测试多行文字链接测试多行文字测试多行文字测试多行文字链接测试多行文字测试多行文字测试多行文字\n";
  
@@ -37,13 +37,13 @@ NS_ASSUME_NONNULL_BEGIN
      .matchLast(@"链接").strikethroughStyle(NSUnderlineStyleSingle).strikethroughColor([UIColor yellowColor])
      .append(text).alignment(NSTextAlignmentCenter).headIndent(20).tailIndent(-20).lineSpacing(10)
      .append(@"路飞").font([UIFont systemFontOfSize:25]).strokeWidth(2).strokeColor([UIColor darkGrayColor])
-     .headInsertImage([UIImage imageNamed:@"luffer"], CGSizeMake(50, 50), [UIFont systemFontOfSize:25])
-     .appendSizeImage([UIImage imageNamed:@"luffer"], CGSizeMake(50, 50))
-     .appendCustomImage([UIImage imageNamed:@"luffer"], CGSizeMake(50, 50), [UIFont systemFontOfSize:15])
+     .headInsertImage([UIImage custom_imageNamed:@"appIcon_luffer"], CGSizeMake(50, 50), [UIFont systemFontOfSize:25])
+     .appendSizeImage([UIImage custom_imageNamed:@"appIcon_luffer"], CGSizeMake(50, 50))
+     .appendCustomImage([UIImage custom_imageNamed:@"appIcon_luffer"], CGSizeMake(50, 50), [UIFont systemFontOfSize:15])
      .append(@"路飞").font([UIFont systemFontOfSize:15])
      .appendSpacing(20)
      .appendAttachment(attachment)
-     .insertImage([UIImage imageNamed:@"luffer"], CGSizeMake(50, 50), 0, [UIFont systemFontOfSize:30])
+     .insertImage([UIImage custom_imageNamed:@"appIcon_luffer"], CGSizeMake(50, 50), 0, [UIFont systemFontOfSize:30])
      .append(@"\n阴影").shadow(shadow).append(@"基线偏移\n").baselineOffset(-5)
      .append(@" ").backgroundColor([UIColor redColor]).fontSize(2);
  
@@ -51,9 +51,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface AttributeStringBuilder : NSObject
 
+/// 计算文本高度
+/// - Parameters:
+///   - attributedString: 富文本
+///   - width: 宽度
++ (CGSize)calculateForAttributedString:(NSAttributedString *)attributedString withWidth:(CGFloat)width;
+
+
 - (instancetype)init NS_UNAVAILABLE;
 
 - (NSAttributedString*)commit;
+/**
+ 获取当前 NSRange，当append、及获取range时
+ */
+- (NSRange)currentRange;
 
 #pragma mark - Content
 
@@ -98,6 +109,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据 start 和 length 设置范围
 - (AttributeStringBuilder *(^)(NSInteger location, NSInteger length))range;
 
+/// 从结尾倒数location 、 length 设置范围
+- (AttributeStringBuilder *(^)(NSInteger location, NSInteger length))lastRange;
+
 /// 将范围设置为当前字符串全部
 - (AttributeStringBuilder *)all;
 
@@ -126,6 +140,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 字号，默认字体
 - (AttributeStringBuilder *(^)(CGFloat fontSize))fontSize;
+
+/// 字号，默认字体
+- (AttributeStringBuilder *(^)(CGFloat boldFontSize))boldFontSize;
 
 /// 字体颜色
 - (AttributeStringBuilder *(^)(UIColor *color))color;
@@ -208,7 +225,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (AttributeStringBuilder *(^)(NSString *text, UIFont *font, UIColor *textColor, UIColor *fillColor, CGFloat radius, UIRectCorner corners, CGSize imgSize, UIEdgeInsets insets, UIEdgeInsets margins, UIColor *strokeColor, CGFloat lineWidth, CGFloat offsetY))appendBackgroundRadiusColor;
 
 
-
 #pragma mark - Glyph
 
 /**
@@ -256,8 +272,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 阴影
 - (AttributeStringBuilder *(^)(NSShadow *shadow))shadow;
 
-/// 链接
+/// 链接URL对象 NSURL
 - (AttributeStringBuilder *(^)(NSURL *url))link;
+
+/// 链接URL 字符串
+- (AttributeStringBuilder *(^)(NSString *))linkUrlStr;
 
 #pragma mark - Paragraph
 
@@ -276,10 +295,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 段第一行头部缩进
 - (AttributeStringBuilder *(^)(CGFloat indent))firstLineHeadIndent;
 
-/// 段头部缩进
+/// 段头部缩进 后续行的左边距
 - (AttributeStringBuilder *(^)(CGFloat indent))headIndent;
 
-/// 段尾部缩进
+/// 段尾部缩进 后续行相对于左边距的缩进量，负值表示超出左边距 如果setTailIndent:是负值，那么文本将会超出左边距，从而实现左边不超过起始左边点的效果。
 - (AttributeStringBuilder *(^)(CGFloat indent))tailIndent;
 
 /// 行高，iOS 的行高会在顶部增加空隙，效果一般不符合 UI 的认知，很少使用
@@ -297,6 +316,35 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 字间距
 - (AttributeStringBuilder *(^)(CGFloat kern))kern;
+
+
+/// 动态添加字间距
+/// @Discussion baseText  基准文本 ,   @"道路路路名名称"
+/// @Discussion dynamicText  动态文本 , @"上报人“
+/// @Discussion font 字体
+/// @code
+///  AttributeStringBuilder *build = AttributeStringBuilder.build(@"NSBackgroundColorAttributeName 圆角")
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"道路路路名名称：").font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"上报人").font([UIFont systemFontOfSize:14]).dynamicKern(@"道路路路名名称", @"上报人", [UIFont systemFontOfSize:14])
+- (AttributeStringBuilder *(^)(NSString *baseText, NSString *dynamicText, UIFont *font))dynamicKern;
+
+
+/// 添加文字并设置字间距
+/// @Discussion baseText  基准文本 ,   @"道路路路名名称："
+/// @Discussion dynamicText  动态文本 , @"上报人：“
+/// @Discussion font 字体
+/// @code
+///  AttributeStringBuilder *build = AttributeStringBuilder.build(@"NSBackgroundColorAttributeName 圆角")
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"道路路路名名称：").font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .append(@"上报人").font([UIFont systemFontOfSize:14]).dynamicKern(@"道路路路名名称", @"上报人", [UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+///  .appendDynamicKern(@"道路路路名名称：", @"上报人：", [UIFont systemFontOfSize:14]).font([UIFont systemFontOfSize:14])
+///  .append(@"\n").font([UIFont systemFontOfSize:14])
+- (AttributeStringBuilder *(^)(NSString *baseText, NSString *dynamicText, UIFont *font))appendDynamicKern;
 
 /// 倾斜
 - (AttributeStringBuilder *(^)(CGFloat obliqueness))obliqueness;
