@@ -45,7 +45,7 @@ NS_INLINE UIColor* kRGBAColor(NSInteger r,NSInteger g,NSInteger b,float a){
     return [UIColor colorWithRed:(r)/255.0 green:(r)/255.0 blue:(r)/255.0 alpha:a];
 }
 
-NS_INLINE UIColor* kRandomColor(){
+NS_INLINE UIColor* kRandomColor(void){
     return [UIColor colorWithRed:(arc4random()%256)/255.0 green:(arc4random()%256)/255.0 blue:(arc4random()%256)/255.0 alpha:1];//随机色生成
 }
 ////颜色 色值
@@ -180,7 +180,7 @@ NS_INLINE NSString* kIfNullForZero(NSString *f){
 /**
  是否模拟器
  */
-NS_INLINE BOOL isSimulator(){
+NS_INLINE BOOL isSimulator(void){
     return ([[[UIDevice currentDevice] model] rangeOfString:@"Simulator"].location != NSNotFound);
 }
 

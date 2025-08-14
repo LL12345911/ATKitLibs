@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -645,16 +645,16 @@
 		41D0ED4D2799332D004F2A31 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
-				41D0ED4E2799332D004F2A31 /* LocationAlwaysPermission.h */,
-				41D0ED4F2799332D004F2A31 /* LocationInUsePermission.h */,
-				41D0ED502799332D004F2A31 /* CameraPermission.m */,
-				41D0ED512799332D004F2A31 /* NotificationPermission.h */,
-				41D0ED522799332D004F2A31 /* PhotosPermission.h */,
-				41D0ED532799332D004F2A31 /* LocationAlwaysPermission.m */,
 				41D0ED542799332D004F2A31 /* CameraPermission.h */,
+				41D0ED502799332D004F2A31 /* CameraPermission.m */,
+				41D0ED4E2799332D004F2A31 /* LocationAlwaysPermission.h */,
+				41D0ED532799332D004F2A31 /* LocationAlwaysPermission.m */,
+				41D0ED4F2799332D004F2A31 /* LocationInUsePermission.h */,
 				41D0ED552799332D004F2A31 /* LocationInUsePermission.m */,
-				41D0ED562799332D004F2A31 /* PhotosPermission.m */,
+				41D0ED512799332D004F2A31 /* NotificationPermission.h */,
 				41D0ED572799332D004F2A31 /* NotificationPermission.m */,
+				41D0ED522799332D004F2A31 /* PhotosPermission.h */,
+				41D0ED562799332D004F2A31 /* PhotosPermission.m */,
 			);
 			path = Permissions;
 			sourceTree = "<group>";
@@ -848,9 +848,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Demo-DemoUITests/Pods-Demo-DemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1141,7 +1145,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dd.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1159,7 +1165,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dd.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
