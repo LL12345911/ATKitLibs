@@ -89,7 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06EF200302CB69276D3E817E /* AttributeStringBuilder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; lastKnownFileType = sourcecode.c.h; name = AttributeStringBuilder.h; path = Demo/AttributeStringBuilder.h; sourceTree = SOURCE_ROOT; };
+		06EF200302CB69276D3E817E /* AttributeStringBuilder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; name = AttributeStringBuilder.h; path = Demo/AttributeStringBuilder.h; sourceTree = SOURCE_ROOT; };
+		411EDC942F0A0866000F76E8 /* AttributeStringBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeStringBuilder.h; sourceTree = "<group>"; };
 		412CD9CF251B282F000411B6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		412CD9D2251B282F000411B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		412CD9D3251B282F000411B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -208,7 +209,6 @@
 		41D0ED5B2799332D004F2A31 /* BasePermisssion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasePermisssion.m; sourceTree = "<group>"; };
 		41D0ED5C2799332D004F2A31 /* AuthorizationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationProtocol.h; sourceTree = "<group>"; };
 		41D0ED5D2799332D004F2A31 /* BasePermisssion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasePermisssion.h; sourceTree = "<group>"; };
-		41D325F329CD98E400F9E976 /* AttributeStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeStringBuilder.h; sourceTree = "<group>"; };
 		41D325F429CD98E400F9E976 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeStringBuilder.m; sourceTree = "<group>"; };
 		41D325F829CD98ED00F9E976 /* JsonTransForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonTransForm.h; sourceTree = "<group>"; };
 		41D325F929CD98ED00F9E976 /* JsonTransForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonTransForm.m; sourceTree = "<group>"; };
@@ -220,8 +220,8 @@
 		41D3260029CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+YHDrawImage.m"; sourceTree = "<group>"; };
 		41D3260629CD996E00F9E976 /* AuthcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthcodeView.h; sourceTree = "<group>"; };
 		41D3260729CD996E00F9E976 /* AuthcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthcodeView.m; sourceTree = "<group>"; };
-		51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; lastKnownFileType = sourcecode.c.objc; name = AttributeStringBuilder.m; path = Demo/AttributeStringBuilder.m; sourceTree = SOURCE_ROOT; };
-		59EB104C3CF99C58453EE30E /* history_202601040858.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; lastKnownFileType = net.daringfireball.markdown; name = history_202601040858.md; path = ../../../../../../history_202601040858.md; sourceTree = SOURCE_ROOT; };
+		51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; name = AttributeStringBuilder.m; path = Demo/AttributeStringBuilder.m; sourceTree = SOURCE_ROOT; };
+		59EB104C3CF99C58453EE30E /* history_202601040858.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; name = history_202601040858.md; path = ../../../../../../history_202601040858.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -680,7 +680,7 @@
 		41D325EF29CD98E400F9E976 /* AttributedString */ = {
 			isa = PBXGroup;
 			children = (
-				41D325F329CD98E400F9E976 /* AttributeStringBuilder.h */,
+				411EDC942F0A0866000F76E8 /* AttributeStringBuilder.h */,
 				41D325F429CD98E400F9E976 /* AttributeStringBuilder.m */,
 			);
 			path = AttributedString;
