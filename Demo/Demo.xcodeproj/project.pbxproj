@@ -68,6 +68,7 @@
 		41D3260329CD98ED00F9E976 /* YHDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D325FF29CD98ED00F9E976 /* YHDrawModel.m */; };
 		41D3260429CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3260029CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m */; };
 		41D3260829CD996E00F9E976 /* AuthcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3260729CD996E00F9E976 /* AuthcodeView.m */; };
+		7A832E26242D5BC847702ED7 /* AttributeStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06EF200302CB69276D3E817E /* AttributeStringBuilder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; lastKnownFileType = sourcecode.c.h; name = AttributeStringBuilder.h; path = Demo/AttributeStringBuilder.h; sourceTree = SOURCE_ROOT; };
 		412CD9CF251B282F000411B6 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		412CD9D2251B282F000411B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		412CD9D3251B282F000411B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -218,6 +220,8 @@
 		41D3260029CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+YHDrawImage.m"; sourceTree = "<group>"; };
 		41D3260629CD996E00F9E976 /* AuthcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthcodeView.h; sourceTree = "<group>"; };
 		41D3260729CD996E00F9E976 /* AuthcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthcodeView.m; sourceTree = "<group>"; };
+		51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; lastKnownFileType = sourcecode.c.objc; name = AttributeStringBuilder.m; path = Demo/AttributeStringBuilder.m; sourceTree = SOURCE_ROOT; };
+		59EB104C3CF99C58453EE30E /* history_202601040858.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; lastKnownFileType = net.daringfireball.markdown; name = history_202601040858.md; path = ../../../../../../history_202601040858.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,9 @@
 				412CD9ED251B2834000411B6 /* DemoTests */,
 				412CD9F8251B2834000411B6 /* DemoUITests */,
 				412CD9D0251B282F000411B6 /* Products */,
+				59EB104C3CF99C58453EE30E /* history_202601040858.md */,
+				51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */,
+				06EF200302CB69276D3E817E /* AttributeStringBuilder.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -983,6 +990,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				412CD9FA251B2834000411B6 /* DemoUITests.m in Sources */,
+				7A832E26242D5BC847702ED7 /* AttributeStringBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
