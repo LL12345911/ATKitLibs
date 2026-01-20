@@ -68,6 +68,7 @@
 		41D3260329CD98ED00F9E976 /* YHDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D325FF29CD98ED00F9E976 /* YHDrawModel.m */; };
 		41D3260429CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3260029CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m */; };
 		41D3260829CD996E00F9E976 /* AuthcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D3260729CD996E00F9E976 /* AuthcodeView.m */; };
+		41E9D65D2F1F73000053C236 /* UIColor+HexAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E9D65C2F1F73000053C236 /* UIColor+HexAlpha.m */; };
 		7A832E26242D5BC847702ED7 /* AttributeStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,8 @@
 		41D3260029CD98ED00F9E976 /* NSMutableAttributedString+YHDrawImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+YHDrawImage.m"; sourceTree = "<group>"; };
 		41D3260629CD996E00F9E976 /* AuthcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthcodeView.h; sourceTree = "<group>"; };
 		41D3260729CD996E00F9E976 /* AuthcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthcodeView.m; sourceTree = "<group>"; };
+		41E9D65B2F1F73000053C236 /* UIColor+HexAlpha.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexAlpha.h"; sourceTree = "<group>"; };
+		41E9D65C2F1F73000053C236 /* UIColor+HexAlpha.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexAlpha.m"; sourceTree = "<group>"; };
 		51EE3D1D29ED3D015144B688 /* AttributeStringBuilder.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; name = AttributeStringBuilder.m; path = Demo/AttributeStringBuilder.m; sourceTree = SOURCE_ROOT; };
 		59EB104C3CF99C58453EE30E /* history_202601040858.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; name = history_202601040858.md; path = ../../../../../../history_202601040858.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -333,6 +336,7 @@
 		41D0ECDA2799332D004F2A31 /* FoundationKitLib */ = {
 			isa = PBXGroup;
 			children = (
+				41E9D65A2F1F72950053C236 /* UIColor */,
 				41D325F729CD98ED00F9E976 /* JsonTransForm */,
 				41D325FA29CD98ED00F9E976 /* YHDrawImage */,
 				41D325EF29CD98E400F9E976 /* AttributedString */,
@@ -717,6 +721,15 @@
 			path = AuthcodeView;
 			sourceTree = "<group>";
 		};
+		41E9D65A2F1F72950053C236 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				41E9D65B2F1F73000053C236 /* UIColor+HexAlpha.h */,
+				41E9D65C2F1F73000053C236 /* UIColor+HexAlpha.m */,
+			);
+			path = UIColor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -971,6 +984,7 @@
 				41D0ED762799332D004F2A31 /* UINavigationBar+NavBar.m in Sources */,
 				41D0ED882799332D004F2A31 /* PhotosPermission.m in Sources */,
 				412CD9E5251B2834000411B6 /* main.m in Sources */,
+				41E9D65D2F1F73000053C236 /* UIColor+HexAlpha.m in Sources */,
 				41D0ED6A2799332D004F2A31 /* UIScrollView+ATKit.m in Sources */,
 				41D0ED752799332D004F2A31 /* UIBarButtonItem+SXCreate.m in Sources */,
 				41D0ED6D2799332D004F2A31 /* AngleView.m in Sources */,
